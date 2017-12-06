@@ -51,8 +51,13 @@ Puppet::Type.newtype(:tacacs_global) do
   end
 
   newproperty(:timeout) do
-    desc 'Number of seconds before the timeout period ends'
-    munge { |v| Integer(v) }
+    desc "Number of seconds before the timeout period ends - Integer or 'unset'"
+
+    validate do |value|
+      if (value.to_s.match('^[\d+]$') || value == 'unset') then super(value)
+      else fail "value #{value.inspect} is invalid, must be Integer or 'unset'"
+      end
+    end
   end
 
   newproperty(:vrf, array_matching: :all) do

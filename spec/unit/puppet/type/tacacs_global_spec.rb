@@ -19,7 +19,8 @@ describe Puppet::Type.type(:tacacs_global) do
 
   describe 'timeout' do
     let(:attribute) { :timeout }
-    include_examples 'numeric parameter', min: 0, max: 604_800
+    include_examples 'accepts values without munging', %w(0 unset)
+    include_examples 'rejects values', %w(foo -1)
   end
 
   describe 'retransmit_count' do
