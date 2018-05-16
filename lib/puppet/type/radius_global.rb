@@ -1,7 +1,7 @@
 require_relative '../../puppet_x/puppetlabs/netdev_stdlib/check'
 if PuppetX::NetdevStdlib::Check.use_old_netdev_type
   Puppet::Type.newtype(:radius_global) do
-    @doc = 'Configure global radius settings'
+    @doc = 'Configure global RADIUS settings'
 
     apply_to_all
 
@@ -16,7 +16,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:enable) do
-      desc 'Enable or disable radius functionality [true|false]'
+      desc 'Enable or disable RADIUS functionality [true|false]'
       newvalues(:true, :false)
     end
 
@@ -70,7 +70,7 @@ else
 
   Puppet::ResourceApi.register_type(
     name: 'radius_global',
-    docs: 'Configure global radius settings',
+    docs: 'Configure global RADIUS settings',
     features: ['remote_resource'],
     attributes: {
       name:         {
@@ -81,7 +81,7 @@ else
       },
       enable:    {
         type:      'Optional[Boolean]',
-        desc:      'Enable or disable radius functionality [true|false]'
+        desc:      'Enable or disable RADIUS functionality [true|false]'
       },
       key:    {
         type:      'Optional[String]',
@@ -104,7 +104,7 @@ else
         desc:      'Number of seconds before the timeout period ends'
       },
       vrf:    {
-        type:      'Optional[String]',
+        type:      'Optional[Array[String]]',
         desc:      'The VRF associated with source_interface (array of strings for multiple).'
       }
     }

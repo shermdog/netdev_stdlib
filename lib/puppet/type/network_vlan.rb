@@ -57,7 +57,7 @@ else
 
   Puppet::ResourceApi.register_type(
     name: 'network_vlan',
-    docs: 'Manage VLANs',
+    docs: "Manage VLAN's.  Layer-2 VLAN's are managed by this resource type.",
     features: ['remote_resource'],
     attributes: {
       ensure:      {
@@ -65,7 +65,7 @@ else
         desc:    'Whether this VLAN should be present or absent on the target system.',
         default: 'present'
       },
-      name:     {
+      id:     {
         type:   'String',
         desc:   'The VLAN ID',
         behaviour: :namevar
@@ -77,7 +77,7 @@ else
       shutdown:    {
         type:      'Optional[Boolean]',
         desc:      'VLAN shutdown if true, not shutdown if false [true|false]',
-        default:   true
+        default:   false
       },
       description:    {
         type:   'Optional[String]',

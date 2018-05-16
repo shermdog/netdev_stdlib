@@ -107,10 +107,9 @@ else
         desc:   'The L2 interface mode, enables or disables trunking'
       },
       untagged_vlan:      {
-        type:    'Optional[String]',
+        type:    'Optional[Integer[1, 4095]]',
         desc:    'VLAN used for untagged VLAN traffic. a.k.a Native VLAN'
       },
-      # TODO: FM-6912: VLAN arrays for Network Trunk
       tagged_vlans:      {
         type:    'Optional[Array[String]]',
         desc:    'Array of VLAN names used for tagged packets'

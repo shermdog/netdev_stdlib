@@ -1,13 +1,13 @@
 require_relative '../../puppet_x/puppetlabs/netdev_stdlib/check'
 if PuppetX::NetdevStdlib::Check.use_old_netdev_type
   Puppet::Type.newtype(:radius_server_group) do
-    @doc = 'Configure a radius server group'
+    @doc = 'Configure a RADIUS server group'
 
     apply_to_all
     ensurable
 
     newparam(:name, namevar: true) do
-      desc 'The name of the radius server group'
+      desc 'The name of the RADIUS server group'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -40,7 +40,7 @@ else
 
   Puppet::ResourceApi.register_type(
     name: 'radius_server_group',
-    docs: 'Configure a radius server group',
+    docs: 'Configure a RADIUS server group',
     features: ['remote_resource'],
     attributes: {
       ensure:       {
@@ -50,7 +50,7 @@ else
       },
       name:         {
         type:      'String',
-        desc:      'The name of the radius server group',
+        desc:      'The name of the RADIUS server group',
         behaviour: :namevar
       },
       servers:         {

@@ -92,7 +92,7 @@ else
     attributes: {
       ensure:      {
         type:    'Enum[present, absent]',
-        desc:    'Whether this network interface should be enabled on the target system.',
+        desc:    'Whether this port channel should be enabled on the target system.',
         default: 'false'
       },
       name:     {
@@ -113,7 +113,7 @@ else
         desc:   'Port Channel description'
       },
       mode:      {
-        type:    'Optional[String]',
+        type:    'Optional[Enum["active","passive", "disabled"]]',
         desc:    'LACP mode [ passive | active | disabled* ]'
       },
       interfaces:      {
@@ -129,7 +129,7 @@ else
         desc:    'Link speed [auto*|10m|100m|1g|10g|40g|56g|100g]'
       },
       duplex:      {
-        type:    'Optional[Enum["auto","full","duplex"]]',
+        type:    'Optional[Enum["auto","full","half"]]',
         desc:    'Duplex mode [auto*|full|half]'
       },
       flowcontrol_send:    {

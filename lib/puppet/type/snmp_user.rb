@@ -113,6 +113,7 @@ else
         desc:       'Whether the SNMP User should be present or absent on the target system.',
         default:    'present'
       },
+      # TODO: NETDEV-36: composite namevars
       name:         {
         type:       'String',
         desc:       'Composite ID of username / version (if applicable)',

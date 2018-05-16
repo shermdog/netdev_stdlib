@@ -70,12 +70,12 @@ else
 
   Puppet::ResourceApi.register_type(
     name: 'syslog_settings',
-    docs: 'Configure a remote syslog server for logging',
+    docs: 'Configure global syslog settings',
     features: ['remote_resource'],
     attributes: {
       name:     {
         type:   'String',
-        desc:   'This defaults to default',
+        desc:   'Name, generally "default", not used to manage the resource',
         behaviour: :namevar
       },
       enable:    {
@@ -83,11 +83,11 @@ else
         desc:   'Enable or disable syslog logging [true|false]'
       },
       console:    {
-        type:   'Optional[Integer]',
+        type:   'Optional[Variant[Integer[0,7], Enum["unset"]]]',
         desc:   "Console logging severity level [0-7] or 'unset'"
       },
       monitor:    {
-        type:   'Optional[Integer]',
+        type:   'Optional[Variant[Integer[0,7], Enum["unset"]]]',
         desc:   "Monitor (terminal) logging severity level [0-7] or 'unset'"
       },
       source_interface:      {
@@ -96,11 +96,11 @@ else
       },
       time_stamp_units:      {
         type:    'Optional[Enum["seconds", "milliseconds"]]',
-        desc:    'The unit to log time values in'
+        desc:    'The unit to log time values in [seconds|milliseconds]'
       },
       vrf:    {
         type:   'Optional[Array[String]]',
-        desc:   'vrf'
+        desc:   'The VRF associated with source_interface (array of strings for multiple).'
       }
     }
   )

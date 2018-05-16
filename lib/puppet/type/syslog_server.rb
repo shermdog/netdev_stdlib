@@ -30,7 +30,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:vrf) do
-      desc 'Interface to send syslog data from, e.g. "management"'
+      desc 'VRF to send syslog data from, e.g. "management"'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -59,7 +59,7 @@ else
     attributes: {
       ensure:      {
         type:    'Enum[present, absent]',
-        desc:    'Whether this network interface should be present or absent on the target system.',
+        desc:    'Whether this syslog server should be present or absent on the target system.',
         default: 'present'
       },
       name:     {
@@ -68,21 +68,20 @@ else
         behaviour: :namevar
       },
       port:    {
-        type:   'Optional[Integer]',
+        type:   'Optional[Integer[1, 65535]]',
         desc:   'Port number of remote syslog server'
       },
       severity_level:    {
-        type:   'Optional[Integer]',
+        type:   'Optional[Integer[1, 7]]',
         desc:   'Syslog severity level to log'
       },
       vrf:    {
         type:   'Optional[String]',
-        desc:   'vrf'
+        desc:   'VRF to send syslog data from, e.g. "management"'
       },
       source_interface:      {
         type:    'Optional[String]',
-        desc:    'Source interface to send syslog data from, e.g. "ethernet 2/1"',
-        default: 'false'
+        desc:    'Source interface to send syslog data from, e.g. "ethernet 2/1"'
       }
     }
   )

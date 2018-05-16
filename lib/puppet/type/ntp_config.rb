@@ -75,7 +75,7 @@ else
         desc:      'The source interface for the NTP system'
       },
       trusted_key: {
-        type:      'Optional[Array[Integer]]',
+        type:      'Optional[Array[Variant[Integer, String]]]',
         desc:      'Array of global trusted-keys. Contents can be a String or Integers'
       }
     }

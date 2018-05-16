@@ -3,7 +3,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
   # encoding: utf-8
 
   Puppet::Type.newtype(:tacacs_global) do
-    @doc = 'Configure global tacacs settings'
+    @doc = 'Configure global TACACS settings'
 
     apply_to_all
 
@@ -18,7 +18,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:enable) do
-      desc 'Enable or disable radius functionality [true|false]'
+      desc 'Enable or disable TACACS functionality [true|false]'
       newvalues(:true, :false)
     end
 
@@ -72,7 +72,7 @@ else
 
   Puppet::ResourceApi.register_type(
     name: 'tacacs_global',
-    docs: 'Configure global tacacs settings',
+    docs: 'Configure global TACACS settings',
     features: ['remote_resource'],
     attributes: {
       name:         {
@@ -83,7 +83,7 @@ else
       },
       enable:  {
         type:      'Optional[Boolean]',
-        desc:      'Enable or disable tacacs_global functionality [true|false]'
+        desc:      'Enable or disable TACACS functionality [true|false]'
       },
       key:  {
         type:      'Optional[String]',
@@ -106,7 +106,7 @@ else
         desc:      'Number of seconds before the timeout period ends'
       },
       vrf:  {
-        type:      'Optional[Array[Integer]]',
+        type:      'Optional[Array[String]]',
         desc:      'The VRF associated with source_interface (array of strings for multiple).'
       }
     }

@@ -49,11 +49,12 @@ else
     attributes: {
       ensure:       {
         type:       'Enum[present, absent]',
-        desc:       'Whether this ntp server should be present or absent on the target system.',
+        desc:       'Whether this NTP auth key should be present or absent on the target system.',
         default:    'present'
       },
       name:         {
-        type:      'Integer',
+        #type:      'Integer[1, 65535]'
+        type:      'String',
         desc:      'Authentication key ID',
         behaviour: :namevar
       },

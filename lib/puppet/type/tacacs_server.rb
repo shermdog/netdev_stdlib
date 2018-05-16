@@ -1,13 +1,13 @@
 require_relative '../../puppet_x/puppetlabs/netdev_stdlib/check'
 if PuppetX::NetdevStdlib::Check.use_old_netdev_type
   Puppet::Type.newtype(:tacacs_server) do
-    @doc = 'Configure a tacacs server'
+    @doc = 'Configure a TACACS server'
 
     apply_to_all
     ensurable
 
     newparam(:name, namevar: true) do
-      desc 'The name of the tacacs server group'
+      desc 'The name of the TACACS server'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -17,7 +17,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:hostname) do
-      desc 'The hostname or address of the tacacs server'
+      desc 'The hostname or address of the TACACS server'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -32,7 +32,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:vrf) do
-      desc 'specifies the VRF instance used to communicate with the server'
+      desc 'Specifies the VRF instance used to communicate with the server'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -42,7 +42,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:port) do
-      desc 'The port of the tacacs server'
+      desc 'The port of the TACACS server'
 
       munge { |v| Integer(v) }
     end
@@ -82,30 +82,34 @@ else
 
   Puppet::ResourceApi.register_type(
     name: 'tacacs_server',
-    docs: 'Configure a tacacs server',
+    docs: 'Configure a TACACS server',
     features: ['remote_resource'],
     attributes: {
       ensure:      {
         type:    'Enum[present, absent]',
-        desc:    'Whether this tacacs server should be present or absent on the target system.',
+        desc:    'Whether this TACACS server should be present or absent on the target system.',
         default: 'present'
       },
       name:     {
         type:   'String',
-        desc:   'Name of the tacacs server',
+        desc:   'Name of the TACACS server',
         behaviour: :namevar
       },
       hostname:    {
         type:   'Optional[String]',
-        desc:   'ipv4 address of the tacacs server'
+        desc:   'The hostname or ipv4 address of the TACACS server'
       },
       single_connection:    {
         type:   'Optional[Boolean]',
         desc:   'Enable or disable session multiplexing [true|false]'
       },
+      vrf:    {
+        type:      'Optional[String]',
+        desc:      'Specifies the VRF instance used to communicate with the server'
+      },
       port:      {
-        type:    'Optional[Integer]',
-        desc:    'The port of the tacacs server'
+        type:    'Optional[Integer[1, 65535]]',
+        desc:    'The port of the TACACS server'
       },
       key:      {
         type:    'Optional[String]',
@@ -113,7 +117,7 @@ else
       },
       key_format:      {
         type:    'Optional[Integer]',
-        desc:    'Encryption key format [0|7]'
+        desc:    'Encryption key format [0-7]'
       },
       timeout:      {
         type:    'Optional[Integer]',

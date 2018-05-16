@@ -48,7 +48,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:vrf) do
-      desc 'Interface to send SNMP data from, e.g. "management"'
+      desc 'VRF to send SNMP data from, e.g. "management"'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -92,13 +92,14 @@ else
         desc:       'Whether the SNMP notification receiver should be present or absent on the target system.',
         default:    'present'
       },
+      # TODO: NETDEV-36: composite namevars
       name:           {
         type:       'String',
         desc:       'Composite ID of name / username / port (if applicable)',
         behaviour:  :namevar
       },
       port:          {
-        type:      'Optional[Integer]',
+        type:      'Optional[Integer[1, 65535]]',
         desc:      'SNMP UDP port number'
       },
       username:      {
@@ -106,20 +107,20 @@ else
         desc:      'Username to use for SNMPv3 privacy and authentication. This is the community string for SNMPv1 and v2'
       },
       version:      {
-        type:      'Optional[String]',
-        desc:      'SNMP version [1|2c|3]'
+        type:      'Optional[Enum["v1","v2","v3"]]',
+        desc:      'SNMP version [v1|v2|v3]'
       },
       type:       {
-        type:      'Optional[String]',
+        type:      'Optional[Enum["traps","informs"]]',
         desc:      'The type of receiver [traps|informs]'
       },
       security:     {
-        type:      'Optional[String]',
+        type:      'Optional[Enum["auth","noauth","priv"]]',
         desc:      'SNMPv3 security mode [auth|noauth|priv]'
       },
       vrf:          {
         type:      'Optional[String]',
-        desc:      'Interface to send SNMP data from, e.g. "management"'
+        desc:      'VRF to send SNMP data from, e.g. "management"'
       },
       source_interface:          {
         type:      'Optional[String]',

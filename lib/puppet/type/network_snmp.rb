@@ -47,9 +47,10 @@ else
     features: ['remote_resource'],
     attributes: {
       name:     {
-        type:   'String',
-        desc:   'This defaults to default',
-        behaviour: :namevar
+        type:       'String',
+        desc:       'Name, generally "default", not used to manage the resource',
+        default:    'default',
+        behaviour:  :namevar
       },
       enable:    {
         type:   'Optional[Boolean]',

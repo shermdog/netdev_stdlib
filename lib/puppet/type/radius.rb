@@ -1,7 +1,7 @@
 require_relative '../../puppet_x/puppetlabs/netdev_stdlib/check'
 if PuppetX::NetdevStdlib::Check.use_old_netdev_type
   Puppet::Type.newtype(:radius) do
-    @doc = 'Enable or disable radius functionality'
+    @doc = 'Enable or disable RADIUS functionality'
 
     apply_to_all
 
@@ -16,7 +16,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:enable) do
-      desc 'Enable or disable radius functionality [true|false]'
+      desc 'Enable or disable RADIUS functionality [true|false]'
       newvalues(:true, :false)
     end
   end
@@ -25,7 +25,7 @@ else
 
   Puppet::ResourceApi.register_type(
     name: 'radius',
-    docs: 'Enable or disable radius functionality',
+    docs: 'Enable or disable RADIUS functionality',
     features: ['remote_resource'],
     attributes: {
       name:         {
@@ -36,7 +36,7 @@ else
       },
       enable:    {
         type:      'Optional[Boolean]',
-        desc:      'Enable or disable radius functionality [true|false]'
+        desc:      'Enable or disable RADIUS functionality [true|false]'
       }
     }
   )

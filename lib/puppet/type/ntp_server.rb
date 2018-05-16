@@ -69,7 +69,7 @@ else
     attributes: {
       ensure:       {
         type:       'Enum[present, absent]',
-        desc:       'Whether this ntp server should be present or absent on the target system.',
+        desc:       'Whether this NTP server should be present or absent on the target system.',
         default:    'present'
       },
       name:         {
@@ -78,7 +78,7 @@ else
         behaviour: :namevar
       },
       key:          {
-        type:      'Optional[Integer]',
+        type:      'Optional[Integer[1, 65535]]',
         desc:      'Authentication key ID'
       },
       maxpoll:      {

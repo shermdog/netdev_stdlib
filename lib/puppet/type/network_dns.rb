@@ -85,13 +85,13 @@ else
       },
       name:         {
         type:      'String',
-        desc:      'Configure DNS settings for network devices',
+        desc:      'Name, generally "settings", not used to manage the resource',
         behaviour: :namevar,
-        default:    'default'
+        default:    'settings'
       },
       domain:         {
         type:      'Optional[String]',
-        desc:      'Array of DNS suffixes to search for FQDN entries'
+        desc:      'The default domain name to append to the device hostname'
       },
       search:         {
         type:      'Optional[Array[String]]',

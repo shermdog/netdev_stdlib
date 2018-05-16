@@ -1,13 +1,13 @@
 require_relative '../../puppet_x/puppetlabs/netdev_stdlib/check'
 if PuppetX::NetdevStdlib::Check.use_old_netdev_type
   Puppet::Type.newtype(:radius_server) do
-    @doc = 'Configure a radius server'
+    @doc = 'Configure a RADIUS server'
 
     apply_to_all
     ensurable
 
     newparam(:name, namevar: true) do
-      desc 'The name of the radius server'
+      desc 'The name of the RADIUS server'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -17,7 +17,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:hostname) do
-      desc 'The hostname or address of the radius server'
+      desc 'The hostname or address of the RADIUS server'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -72,7 +72,7 @@ if PuppetX::NetdevStdlib::Check.use_old_netdev_type
     end
 
     newproperty(:vrf) do
-      desc 'Interface to send syslog data from, e.g. "management"'
+      desc 'VRF to send syslog data from, e.g. "management"'
 
       validate do |value|
         if value.is_a? String then super(value)
@@ -111,7 +111,7 @@ else
 
   Puppet::ResourceApi.register_type(
     name: 'radius_server',
-    docs: 'Configure a radius server',
+    docs: 'Configure a RADIUS server',
     features: ['remote_resource'],
     attributes: {
       ensure:      {
@@ -121,20 +121,19 @@ else
       },
       name:         {
         type:       'String',
-        desc:       'Resource name, not used to manage the device',
-        behaviour:  :namevar,
-        default:    'default'
+        desc:       'The name of the RADIUS server',
+        behaviour:  :namevar
       },
       hostname:    {
         type:      'Optional[String]',
-        desc:      'The hostname or address of the radius server'
+        desc:      'The hostname or address of the RADIUS server'
       },
       auth_port:    {
-        type:      'Optional[Integer]',
+        type:      'Optional[Integer[1, 65535]]',
         desc:      'Port number to use for authentication'
       },
       acct_port:    {
-        type:      'Optional[Integer]',
+        type:      'Optional[Integer[1, 65535]]',
         desc:      'Port number to use for accounting'
       },
       key:    {
@@ -159,7 +158,7 @@ else
       },
       vrf:    {
         type:      'Optional[String]',
-        desc:      'Interface to send syslog data from, e.g. "management"'
+        desc:      'VRF to send syslog data from, e.g. "management"'
       },
       source_interface:    {
         type:      'Optional[String]',
