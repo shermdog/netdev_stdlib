@@ -53,7 +53,6 @@ else
         default:    'present'
       },
       name:         {
-        #type:      'Integer[1, 65535]'
         type:      'String',
         desc:      'Authentication key ID',
         behaviour: :namevar
