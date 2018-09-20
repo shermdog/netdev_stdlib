@@ -65,7 +65,7 @@ else
   Puppet::ResourceApi.register_type(
     name: 'syslog_server',
     docs: 'Configure a remote syslog server for logging',
-    features: ['remote_resource'],
+    features: ['canonicalize', 'remote_resource'],
     attributes: {
       ensure: {
         type:    'Enum[present, absent]',
